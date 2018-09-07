@@ -10,22 +10,24 @@ def find_leaf(a, b):
     seen = set()
 
     while True:
-        new_leafs = []
+        new_leafs = deque()
 
         for i in leafs:
-            cur_value = i.value * 2
-            if cur_value not in seen and cur_value <= b:
-                new_leafs.append(State(cur_value, '*2', i))
-                seen.add(cur_value)
-            if cur_value == b:
-                return new_leafs[-1]
+            val = i.value
+            if val % 2 == 0:
+                cur_value = i.value / 2
+                if cur_value not in seen and cur_value < a:
+                    new_leafs.append(State(cur_value, '/2', i))
+                    seen.add(cur_value)
+                if cur_value == b:
+                    return new_leafs.pop()
 
-            cur_value = i.value + 3
-            if cur_value not in seen:
-                new_leafs.append(State(cur_value, '+3', i))
+            cur_value = i.value - 3
+            if cur_value not in seen and cur_value < a:
+                new_leafs.append(State(cur_value, '-3', i))
                 seen.add(cur_value)
             if cur_value == b:
-                return new_leafs[-1]
+                return new_leafs.pop()
 
         leafs = new_leafs
 

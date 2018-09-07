@@ -39,17 +39,17 @@ def gen_straight_way(seen, leafs, new_leafs, tree, a, b):
     new_leafs = []
     for i in leafs:
         cur_value = i.value * 2
-        if cur_value not in seen and cur_value < b:
+        if cur_value not in seen and cur_value <= b:
             new_leafs.append(State(cur_value, '*2', i))
             seen.add(cur_value)
 
         cur_value = i.value + 3
-        if cur_value not in seen and cur_value < b:
+        if cur_value not in seen and cur_value <= b:
             new_leafs.append(State(cur_value, '+3', i))
             seen.add(cur_value)
 
         cur_value = i.value - 2
-        if cur_value not in seen and cur_value > a:
+        if cur_value not in seen and cur_value >= a:
             new_leafs.append(State(cur_value, '-2', i))
             seen.add(cur_value)
         #straight_tree = np.append(straight_tree, new_leafs_straight)
@@ -59,18 +59,18 @@ def gen_back_way(seen, leafs, new_leafs, a, b):
     for i in leafs:
         val = i.value
         if val % 2 == 0:
-            cur_value = val // 2
-            if cur_value not in seen and cur_value > a:
+            cur_value = val / 2
+            if cur_value not in seen and cur_value >= a:
                 new_leafs.append(State(cur_value, '/2', i))
                 seen.add(cur_value)
 
         cur_value = i.value - 3
-        if cur_value not in seen and cur_value > a:
+        if cur_value not in seen and cur_value >= a:
             new_leafs.append(State(cur_value, '-3', i))
             seen.add(cur_value)
 
         cur_value = i.value + 2
-        if cur_value not in seen and cur_value < b:
+        if cur_value not in seen and cur_value <= b:
             new_leafs.append(State(cur_value, '+2', i))
             seen.add(cur_value)
 
@@ -88,11 +88,9 @@ def find_seq(leaf, way):
         seq.append(parent)
         cur = parent
 
-#a = int(input('Input a: '))
-#b = int(input('Input b: '))
+a = int(input('Input a: '))
+b = int(input('Input b: '))
 
-a = 2
-b = 100000000000
 ways = find_leaf(a, b)
 straight_way = find_seq(ways[0], 'straight')
 back_way = find_seq(ways[1], 'back')

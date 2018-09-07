@@ -29,7 +29,7 @@ def find_leaf(a, b):
 
             cur_value = i.value - 2
             if cur_value not in seen:
-                new_leafs.append(State(cur_value, '- 2', i))
+                new_leafs.append(State(cur_value, '-2', i))
                 seen.add(cur_value)
             if cur_value == b:
                 return new_leafs.pop()
