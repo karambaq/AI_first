@@ -30,6 +30,7 @@ def find_leaf(a, b):
         
         if straight_way:
             back_way = find_leaf_in_set_of_states(new_leafs_reverse, straight_way[0])
+            print(f"Visited nodes count: {len(reverse_seen) + len(straight_seen)}")
             return straight_way[0], back_way
 
         straight_leafs = new_leafs_straight
@@ -81,8 +82,6 @@ def find_seq(leaf, way):
 a = int(input('Input a: '))
 b = int(input('Input b: '))
 
-#a = 2
-#b = 100000000000
 ways = find_leaf(a, b)
 straight_way = find_seq(ways[0], 'straight')
 back_way = find_seq(ways[1], 'back')
@@ -90,3 +89,4 @@ for s in back_way[:-1]:
     s.reverse_op()
 way = straight_way + back_way
 print(way)
+print(len(way))
