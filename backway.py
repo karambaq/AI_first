@@ -20,7 +20,7 @@ def find_leaf(a, b):
                     new_leafs.append(State(cur_value, '/2', i))
                     seen.add(cur_value)
                 if cur_value == b:
-                    print(len(seen))
+                    print(f"Visited nodes count: {len(seen)}")
                     return new_leafs.pop()
 
             cur_value = i.value - 3
@@ -28,7 +28,7 @@ def find_leaf(a, b):
                 new_leafs.append(State(cur_value, '-3', i))
                 seen.add(cur_value)
             if cur_value == b:
-                print(len(seen))
+                print(f"Visited nodes count: {len(seen)}")
                 return new_leafs.pop()
 
         leafs = new_leafs

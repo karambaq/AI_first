@@ -44,6 +44,21 @@ def gen_straight_way(seen, leafs, new_leafs, tree, a, b):
             new_leafs.append(State(cur_value, '*2', i))
             seen.add(cur_value)
 
+        cur_value = i.value + 5
+        if cur_value not in seen and cur_value <= b:
+            new_leafs.append(State(cur_value, '+5', i))
+            seen.add(cur_value)
+
+        cur_value = i.value * 3
+        if cur_value not in seen and cur_value <= a:
+            new_leafs.append(State(cur_value, '*3', i))
+            seen.add(cur_value)
+
+        cur_value = i.value - 7
+        if cur_value not in seen and cur_value >= a:
+            new_leafs.append(State(cur_value, '-7', i))
+            seen.add(cur_value)
+
         cur_value = i.value + 3
         if cur_value not in seen and cur_value <= b:
             new_leafs.append(State(cur_value, '+3', i))
@@ -53,6 +68,8 @@ def gen_straight_way(seen, leafs, new_leafs, tree, a, b):
         if cur_value not in seen and cur_value >= a:
             new_leafs.append(State(cur_value, '-2', i))
             seen.add(cur_value)
+        
+
         #straight_tree = np.append(straight_tree, new_leafs_straight)
         tree.extend(new_leafs)
 
@@ -65,9 +82,25 @@ def gen_back_way(seen, leafs, new_leafs, a, b):
                 new_leafs.append(State(cur_value, '/2', i))
                 seen.add(cur_value)
 
+        cur_value = i.value - 5
+        if cur_value not in seen and cur_value >= a:
+            new_leafs.append(State(cur_value, '-5', i))
+            seen.add(cur_value)
+
+        if val % 3 == 0:
+            cur_value = i.value / 3
+            if cur_value not in seen and cur_value >= a:
+                new_leafs.append(State(cur_value, '/3', i))
+                seen.add(cur_value)
+
         cur_value = i.value - 3
         if cur_value not in seen and cur_value >= a:
             new_leafs.append(State(cur_value, '-3', i))
+            seen.add(cur_value)
+
+        cur_value = i.value + 7
+        if cur_value not in seen and cur_value <= b:
+            new_leafs.append(State(cur_value, '+7', i))
             seen.add(cur_value)
 
         cur_value = i.value + 2
